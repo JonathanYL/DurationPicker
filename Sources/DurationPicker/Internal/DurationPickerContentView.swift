@@ -75,7 +75,7 @@ final class DurationPickerContentView: UIView {
                accessibilityLabel: String?) {
     label.text = text
     if let mainColor = mainColor, let mutedColor = mutedColor {
-        label.textColor = muted ? .mutedColor : .mainColor
+        label.textColor = muted ? mutedColor : mainColor
     } else {
         label.textColor = muted ? .tertiaryLabel : .label
     }
