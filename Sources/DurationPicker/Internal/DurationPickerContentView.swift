@@ -24,7 +24,9 @@ import UIKit
 
 /// A view which displays a single monospaced, right-aligned label. Used as a row for `DurationPickerView`.
 final class DurationPickerContentView: UIView {
-
+  var mainColor: UIColor?
+  var mutedColor: UIColor?
+    
   private let label: UILabel = {
     let label = UILabel()
     label.textAlignment = .right
@@ -72,7 +74,11 @@ final class DurationPickerContentView: UIView {
                muted: Bool,
                accessibilityLabel: String?) {
     label.text = text
-    label.textColor = muted ? .tertiaryLabel : .label
+    if let mainColor = mainColor, let mutedColor = mutedColor {
+        label.textColor = muted ? .mutedColor : .mainColor
+    } else {
+        label.textColor = muted ? .tertiaryLabel : .label
+    }
     label.accessibilityLabel = accessibilityLabel
   }
 

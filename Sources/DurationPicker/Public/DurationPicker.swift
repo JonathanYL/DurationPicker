@@ -221,6 +221,11 @@ open class DurationPicker: UIControl {
       Int(duration),
       animated: animated)
   }
+    
+  open func setColors(mainColor: UIColor, mutedColor: UIColor) {
+    pickerView.mainColor = mainColor
+    pickerView.mutedColor = mutedColor
+  }
 
   // MARK: - Sizing
 

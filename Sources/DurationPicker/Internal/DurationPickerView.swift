@@ -24,7 +24,9 @@ import UIKit
 
 /// A subclass of `UIPickerView` which to obfuscates the `UIPickerViewDataSource` and `UIPickerViewDelegate` conformance from the public `DurationPicker` interface.
 final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate, UIPickerViewAccessibilityDelegate {
-
+  
+  var mainColor: UIColor?
+  var mutedColor: UIColor?
   // MARK: - Configuration Properties
 
   var pickerMode: DurationPicker.Mode {
@@ -127,6 +129,11 @@ final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
     addSubview(secondUnitLabel)
 
     setUnitLabelsText()
+    if let mainColor {
+      hourUnitLabel.textColor = mainColor
+      minuteUnitLabel.textColor = mainColor
+      secondUnitLabel.textColor = mainColor
+    }
   }
 
   override func layoutSubviews() {
@@ -385,6 +392,13 @@ final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
       minuteInterval: minuteInterval,
       secondInterval: secondInterval)
   }
+    
+  // MARK: - Styling
+    
+  func configure(mainColor: UIColor, mutedColor: UIColor) {
+     self.mainColor = mainColor
+     self.mutedColor = mutedColor
+  }
 
   // MARK: - Picker Mode
 
@@ -476,7 +490,9 @@ final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
                   forComponent component: Int,
                   reusing view: UIView?) -> UIView {
     let contentView = view as? DurationPickerContentView ?? DurationPickerContentView()
-
+    contentView.mainColor = mainColor
+    contentView.mutedColor = mutedColor
+    
     guard let componentType = pickerMode.componentType(fromComponent: component) else {
       return contentView
     }
