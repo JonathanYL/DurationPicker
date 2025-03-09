@@ -129,11 +129,6 @@ final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
     addSubview(secondUnitLabel)
 
     setUnitLabelsText()
-    if let mainColor {
-      hourUnitLabel.textColor = mainColor
-      minuteUnitLabel.textColor = mainColor
-      secondUnitLabel.textColor = mainColor
-    }
   }
 
   override func layoutSubviews() {
@@ -398,6 +393,9 @@ final class DurationPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
   func configure(mainColor: UIColor, mutedColor: UIColor) {
      self.mainColor = mainColor
      self.mutedColor = mutedColor
+     hourUnitLabel.textColor = mainColor
+     minuteUnitLabel.textColor = mainColor
+     secondUnitLabel.textColor = mainColor
   }
 
   // MARK: - Picker Mode
